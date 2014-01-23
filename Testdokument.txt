@@ -1,3 +1,10 @@
 Test,test,test,test und so weiter und sofort.
 
 Dies ist der 2. Test.
+
+Zuerst wird das Dictenary erstellt: mkdir ~/NAME.
+Dann geht man in das Ditenary hinein: cd ~/NAME.
+Dann added man die Datei an der man arbeitet: $ git add DATEINAME.TYP
+Hier nach schreibt man was geändert wurde: $ git commit -m "ÄNDERUNG"
+Daraufhin drückt man es in das Webdictenary: $ git push origin master.
+Zuletzt checked man den Status: $ git status.
