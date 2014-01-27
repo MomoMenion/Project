@@ -11,11 +11,12 @@ public enum MovementPhase
 public class PlayerControllerScript : MonoBehaviour
 {
     // Public unity setter
-    public bool permanentMovement = true, debugCollisionDetection = false;
+    public bool permanentMovement = true;
     public float runPower = 10, jumpPower = 10, maxCowerTime = 1, maxTouchBufferTime = 0.3f, gravity = 9.81f;
 
     // CharacterController variables
     CharacterController characterController;
+    public bool TopCollision { private get; set; }
     Vector3 movement = Vector3.zero;
     Vector3 startPosition;
 
@@ -70,9 +71,6 @@ public class PlayerControllerScript : MonoBehaviour
         characterController.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         #endregion
 
-        if (debugCollisionDetection)
-            Debug.Log(characterController.collisionFlags);
-
         #region Gravity
         // Touch Ground
         if (characterController.isGrounded)
@@ -112,10 +110,6 @@ public class PlayerControllerScript : MonoBehaviour
             #endregion
         }
     }
-    void OnTriggerStay(Collider colliderObject)
-    {
-
-    }
 
     // Set Player object and camera object to start position
     void SetToStartposition()
@@ -147,8 +141,10 @@ public class PlayerControllerScript : MonoBehaviour
             // Fast down to ground
             if (!characterController.isGrounded)
                 movement.y -= jumpPower;
+
             // Cower
             characterController.transform.localScale = new Vector3(1, 0.5f, 1);
+
             // Set new standup time if not allready set for currend standup
             if (!standUp)
                 cowerStartTime = Time.time;
@@ -160,7 +156,8 @@ public class PlayerControllerScript : MonoBehaviour
             cower = false;
 
         // Stand up
-        if (standUp && Time.time > cowerStartTime + maxCowerTime)
+        if (standUp && Time.time > cowerStartTime + maxCowerTime &&
+            !TopCollision)
         {
             characterController.transform.localScale = new Vector3(1, 1, 1);
             standUp = false;

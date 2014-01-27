@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scipts\JumpNRun\MainMenuScript.cs" />
      <Compile Include="Assets\Scipts\JumpNRun\MenuBackgroundScript.cs" />
      <Compile Include="Assets\Scipts\JumpNRun\PlayerControllerScript.cs" />
+     <Compile Include="Assets\Scipts\JumpNRun\PlayerTopCollisionScript.cs" />
      <Compile Include="Assets\Scipts\MovementScript.cs" />
      <Compile Include="Assets\Scipts\Old Tests\OldInputLogicScript.cs" />
      <Compile Include="Assets\Scipts\Old Tests\OldPlayerControllerScript.cs" />
